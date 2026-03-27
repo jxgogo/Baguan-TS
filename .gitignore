@@ -1,0 +1,62 @@
+# Python cache and compiled files
+**/__pycache__/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+*.ipynb
+
+# Log files
+*.log
+*logs*/
+
+# Test files and directories
+test.py
+*test/
+*test*
+
+# Data directories
+datasets/
+*datasets*/
+*kernel_data/
+*valid_datasets/
+real_validset/
+dataset_info/
+
+# Model checkpoints and weights
+*.pt
+*.pth
+
+# Configuration and environment files
+*.env*
+*.json
+
+# IDE and editor files
+.idea/
+.vscode/
+
+# System and temporary files
+.DS_Store
+Thumbs.db
+*.tmp
+.nfs*
+
+# Output and result files
+*result*
+*.png
+*.jpg
+*.jpeg
+
+# Shell scripts and executables
+*.sh
+*.run
+*.out
+*.zip
+
+# Experiment tracking
+wandb/
+*.wandb
+

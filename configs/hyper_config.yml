@@ -1,0 +1,5 @@
+mode: 3D
+context_len: 500
+K: 50
+RBfcst_period: 5
+mF: 4

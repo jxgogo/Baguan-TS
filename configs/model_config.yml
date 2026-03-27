@@ -1,0 +1,67 @@
+ninp: &ninp 192
+nheads: &nheads 6
+nhid: &nhid 768
+nlayers: &nlayers 12
+patch_size: &patch_size 8
+output_dim: &output_dim 5000
+dropout_p: &dropout_p 0.0
+activation: &activation gelu
+
+
+input_encoder:
+  module: encoder
+  class: ConvXYEncoder_Fourier
+  params:
+    ninp: *ninp
+    patch_size: *patch_size
+    features_per_group: 1
+    
+positional_embedder:
+  module: pos_embed
+  class: PositionalEmbedder
+  params:
+    seed: 0
+    feature_positional_embedding: subspace
+    ninp: *ninp
+
+transformers:
+  module: transformer
+  class: TransformerLayer
+  params:
+    d_model: *ninp
+    dim_feedforward: *nhid
+    activation: *activation
+    attention_between_features:
+      module: attention
+      class: MultiHeadAttention
+      params:
+        d_model: *ninp
+        nheads: *nheads
+        dropout_p: *dropout_p
+    attention_between_ts:
+      module: attention
+      class: MultiHeadAttention
+      params:
+        d_model: *ninp
+        nheads: *nheads
+        dropout_p: *dropout_p
+        is_causal: False
+        enable_rope: True
+        # initial_type: "small_normal"
+
+    attention_between_samples:
+      module: attention
+      class: MultiHeadAttentionInTabPFN
+      params:
+        d_model: *ninp
+        nheads: *nheads
+        dropout_p: *dropout_p
+
+prediction_head:
+  module: decoder
+  class: ClassifierDecoder
+  params:
+    input_dim: *ninp
+    hidden_size: *nhid
+    patch_size: *patch_size
+    output_dim: *output_dim
