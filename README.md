@@ -36,8 +36,8 @@ model = BaguanTS(
 forecast, forecast_quantiles = model.predict(
     X_train, y_train, X_test,
     data_type='TS-tabular',
-    context_len=500,
-    K=50
+    context_len=576,
+    K=30
 )
 ```
 
@@ -63,11 +63,11 @@ forecast, forecast_quantiles = model.predict(
 If you use this code in your research, please cite our paper:
 
 ```bibtex
-@article{baguants2025,
+@article{baguants2026,
   title={BaguanTS: Time Series Forecasting with In-Context Learning},
   author={},
   journal={},
-  year={2025}
+  year={2026}
 }
 ```
 
