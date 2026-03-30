@@ -33,12 +33,7 @@ model = BaguanTS(
 )
 
 # Run prediction
-forecast, forecast_quantiles = model.predict(
-    X_train, y_train, X_test,
-    data_type='TS-tabular',
-    context_len=576,
-    K=30
-)
+forecast, forecast_quantiles = model.predict(X_train, y_train, X_test)
 ```
 
 ## Project Structure
